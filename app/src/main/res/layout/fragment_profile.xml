@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="30dp"
+        android:orientation="vertical" >
+        <TextView
+            android:id="@+id/text_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <!-- Nombre -->
+
+        <TextView
+            android:id="@+id/title_name"
+            android:layout_marginLeft="35dp"
+            android:textSize="12dp"
+            android:textColor="@color/colorTextLight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/name" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/icon_name"
+                android:layout_marginRight="10dp"
+                android:drawableLeft="@drawable/ic_account_name_black_24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <EditText
+                android:id="@+id/profile_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="12"
+                android:focusable="false"
+                android:inputType="textPersonName"
+                app:backgroundTint="@color/colorLinea" />
+
+        </LinearLayout>
+
+        <!-- Telefono -->
+
+        <TextView
+            android:id="@+id/title_telephone"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="35dp"
+            android:textSize="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/telephone" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/icon_phone"
+                android:layout_marginRight="10dp"
+                android:drawableLeft="@drawable/ic_phone_black_24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <EditText
+                android:id="@+id/profile_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="12"
+                app:backgroundTint="@color/colorLinea"
+                android:text="261-628478 *"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
+        <!-- Nombre de usuario -->
+
+        <TextView
+            android:id="@+id/title_username"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="35dp"
+            android:textSize="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/user_name" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/icon_username"
+                android:layout_marginRight="10dp"
+                android:drawableLeft="@drawable/ic_person_black_24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <EditText
+                android:id="@+id/profile_userName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="12"
+                app:backgroundTint="@color/colorLinea"
+                android:text="canaludavid *"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
+        <!-- Contraseña -->
+
+
+        <TextView
+            android:id="@+id/title_password"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="35dp"
+            android:textSize="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/password" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/icon_password"
+                android:layout_marginRight="10dp"
+                android:drawableLeft="@drawable/ic_lock_black_24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <EditText
+                android:id="@+id/profile_pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="12"
+                app:backgroundTint="@color/colorLinea"
+                android:text="123456789"
+                android:inputType="textPassword" />
+        </LinearLayout>
+
+        <!--Repetir Contraseña -->
+
+
+        <TextView
+            android:id="@+id/title_password_repeat"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="35dp"
+            android:textSize="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/password_repeat" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/icon_password_repeat"
+                android:layout_marginRight="10dp"
+                android:drawableLeft="@drawable/ic_lock_black_24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <EditText
+                android:id="@+id/profile_passRepeat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="12"
+                app:backgroundTint="@color/colorLinea"
+                android:text="123456789"
+                android:inputType="textPassword" />
+        </LinearLayout>
+        <Button
+            android:id="@+id/button"
+            android:layout_width="200dp"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/colorAccent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_empty"
+            android:text="@string/buton_edit" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">canalu</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <!--Menu-->
+    <string name="menu_home">Inicio</string>
+    <string name="menu_maps_routes">Mapa de rutas</string>
+    <string name="menu_customers">Clientes</string>
+    <string name="menu_products">Productos</string>
+    <string name="menu_orders">Pedidos</string>
+    <string name="menu_profile">Mi perfil</string>
+    <string name="menu_settings">Configuraciones</string>
+    <string name="menu_exit">Salir</string>
+    <string name="login_title_user">Usuario</string>
+    <string name="title_preferences">Preferencias</string>
+    <string name="login_title_pass">Password</string>
+
+    <!--buton-->
+    <string name="buton_edit">Guardar</string>
+    <string name="name">Nombre</string>
+    <string name="password">Contraseña</string>
+    <string name="password_repeat">Repetir contraseña</string>
+    <string name="user_name">Nombre de usuario</string>
+    <string name="telephone">Teléfono</string>
+    <string name="text_save">Guardar</string>
+
+    <!--Fragment Ruta-->
+    <string name="tab_title_list">Lista de direcciones</string>
+    <string name="tab_title_maps">Ver en el mapa</string>
+
+    <!--Activity Detail Ruta-->
+    <string name="details_title_address">Domicilio cliente</string>
+    <string name="details_title_status">Estado de la visita</string>
+    <string name="details_title_observations">Observaciones</string>
+
+    <string name="details_visited">Visitado</string>
+    <string name="details_not_visited">NO Visitado</string>
+
+</resources>

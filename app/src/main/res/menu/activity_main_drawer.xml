@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_item_home_white_24dp"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_routes"
+            android:icon="@drawable/ic_item_maps_routes_white_24dp"
+            android:title="@string/menu_maps_routes" />
+        <item
+            android:id="@+id/nav_customers"
+            android:icon="@drawable/ic_item_customers_white_24dp"
+            android:title="@string/menu_customers" />
+
+        <item
+            android:id="@+id/nav_products"
+            android:icon="@drawable/ic_item_products_lists_white_24dp"
+            android:title="@string/menu_products" />
+        <item
+            android:id="@+id/nav_orders"
+            android:icon="@drawable/ic_item_orders_products_white_24dp"
+            android:title="@string/menu_orders" />
+    </group>
+
+    <item android:title="@string/title_preferences">
+        <menu>
+
+            <item
+                android:id="@+id/nav_profile"
+                android:icon="@drawable/ic_item_profile_white_24dp"
+                android:title="@string/menu_profile" />
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_item_configuration_white_24dp"
+                android:title="@string/menu_settings" />
+            <item
+                android:id="@+id/nav_exit"
+                android:icon="@drawable/ic_item_exit_to_app_white_24dp"
+                android:title="@string/menu_exit" />
+        </menu>
+    </item>
+
+</menu>
