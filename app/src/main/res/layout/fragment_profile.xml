@@ -20,7 +20,6 @@
             android:textSize="20sp" />
 
         <!-- Nombre -->
-
         <TextView
             android:id="@+id/title_name"
             android:layout_marginLeft="35dp"
@@ -54,7 +53,6 @@
         </LinearLayout>
 
         <!-- Telefono -->
-
         <TextView
             android:id="@+id/title_telephone"
             android:layout_marginTop="25dp"
@@ -87,7 +85,6 @@
         </LinearLayout>
 
         <!-- Nombre de usuario -->
-
         <TextView
             android:id="@+id/title_username"
             android:layout_marginTop="25dp"
@@ -120,8 +117,6 @@
         </LinearLayout>
 
         <!-- Contraseña -->
-
-
         <TextView
             android:id="@+id/title_password"
             android:layout_marginTop="25dp"
@@ -153,8 +148,6 @@
         </LinearLayout>
 
         <!--Repetir Contraseña -->
-
-
         <TextView
             android:id="@+id/title_password_repeat"
             android:layout_marginTop="25dp"
