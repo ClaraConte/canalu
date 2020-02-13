@@ -2,11 +2,13 @@ package com.example.canalu.ui.main;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.canalu.model.Address;
 import com.example.canalu.model.Users;
 import com.example.canalu.request.ApiClient;
 
@@ -38,11 +40,14 @@ public class MainViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<Users> call, Response<Users> response) {
                 if (response.isSuccessful()) {
-                    usuario.postValue(response.body());
+
+                    Users resultado = response.body();
+                    usuario.postValue(resultado);
                 }else{
 
                 }
             }
+
             @Override
             public void onFailure(Call<Users> call, Throwable t) {
 

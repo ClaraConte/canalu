@@ -5,51 +5,46 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class Users implements Parcelable {
 
     private int idUsers;
     private String usersFirstName;
     private String usersLastName;
-    private Long usersDni;
-    private int idAddress;
-    private String address;
+    private int usersDni;
     private String usersPhone;
     private String usersEmail;
-
     @SerializedName("usersBirthDay")
     private String usersBirthDay;
 
-    public Users(int idUsers, String usersFirstName, String usersLastName, Long usersDni, int idAddress, String address, String usersPhone, String usersEmail, String usersBirthDay) {
+    private ArrayList<Address> address = new ArrayList<>();
+    private Employees employees;
+
+    public Users() {
+    }
+
+    public Users(int idUsers, String usersFirstName, String usersLastName, int usersDni, String usersPhone, String usersEmail, String usersBirthDay, ArrayList<Address> address, Employees employees) {
         this.idUsers = idUsers;
         this.usersFirstName = usersFirstName;
         this.usersLastName = usersLastName;
         this.usersDni = usersDni;
-        this.idAddress = idAddress;
-        this.address = address;
         this.usersPhone = usersPhone;
         this.usersEmail = usersEmail;
         this.usersBirthDay = usersBirthDay;
-    }
-
-    public Users() {
+        this.address = address;
+        this.employees = employees;
     }
 
     protected Users(Parcel in) {
         idUsers = in.readInt();
         usersFirstName = in.readString();
         usersLastName = in.readString();
-        if (in.readByte() == 0) {
-            usersDni = null;
-        } else {
-            usersDni = in.readLong();
-        }
-        idAddress = in.readInt();
-        address = in.readString();
+        usersDni = in.readInt();
         usersPhone = in.readString();
         usersEmail = in.readString();
         usersBirthDay = in.readString();
+        address = in.createTypedArrayList(Address.CREATOR);
     }
 
     public static final Creator<Users> CREATOR = new Creator<Users>() {
@@ -88,28 +83,12 @@ public class Users implements Parcelable {
         this.usersLastName = usersLastName;
     }
 
-    public Long getUsersDni() {
+    public int getUsersDni() {
         return usersDni;
     }
 
-    public void setUsersDni(Long usersDni) {
+    public void setUsersDni(int usersDni) {
         this.usersDni = usersDni;
-    }
-
-    public int getIdAddress() {
-        return idAddress;
-    }
-
-    public void setIdAddress(int idAddress) {
-        this.idAddress = idAddress;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getUsersPhone() {
@@ -136,6 +115,22 @@ public class Users implements Parcelable {
         this.usersBirthDay = usersBirthDay;
     }
 
+    public ArrayList<Address> getAddress() {
+        return address;
+    }
+
+    public void setAddress(ArrayList<Address> address) {
+        this.address = address;
+    }
+
+    public Employees getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Employees employees) {
+        this.employees = employees;
+    }
+
     @Override
     public String toString() {
         return "Users{" +
@@ -143,11 +138,11 @@ public class Users implements Parcelable {
                 ", usersFirstName='" + usersFirstName + '\'' +
                 ", usersLastName='" + usersLastName + '\'' +
                 ", usersDni=" + usersDni +
-                ", idAddress=" + idAddress +
-                ", address='" + address + '\'' +
                 ", usersPhone='" + usersPhone + '\'' +
                 ", usersEmail='" + usersEmail + '\'' +
-                ", usersBirthDay=" + usersBirthDay +
+                ", usersBirthDay='" + usersBirthDay + '\'' +
+                ", address=" + address +
+                ", employees=" + employees +
                 '}';
     }
 
@@ -161,16 +156,11 @@ public class Users implements Parcelable {
         parcel.writeInt(idUsers);
         parcel.writeString(usersFirstName);
         parcel.writeString(usersLastName);
-        if (usersDni == null) {
-            parcel.writeByte((byte) 0);
-        } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeLong(usersDni);
-        }
-        parcel.writeInt(idAddress);
-        parcel.writeString(address);
+        parcel.writeInt(usersDni);
         parcel.writeString(usersPhone);
         parcel.writeString(usersEmail);
         parcel.writeString(usersBirthDay);
+        parcel.writeTypedList(address);
     }
 }
+

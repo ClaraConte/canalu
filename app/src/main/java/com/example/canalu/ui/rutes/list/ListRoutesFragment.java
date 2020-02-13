@@ -17,6 +17,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.canalu.R;
+import com.example.canalu.model.Address;
+import com.example.canalu.model.Employees;
 import com.example.canalu.model.Users;
 import com.example.canalu.ui.rutes.details.RoutesDetailsActivity;
 
@@ -38,9 +40,10 @@ public class ListRoutesFragment extends Fragment {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
-
-                Users usuario = new Users(2, "Juan","perez", (long) 23323,2,"los lapachos 232","2323234","mnnd@mksdc.com","24-02-2012");
-                clientes.add(usuario);
+                ArrayList<Address> dir = new ArrayList<Address>();
+                Employees employees = new Employees();
+                //Users usuario = new Users(2, "Juan","perez", "23323",1,dir,employees,"2323234","mnnd@mksdc.com","24-02-2012");
+                //clientes.add(usuario);
 
             }
         });

@@ -17,6 +17,7 @@
             android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
             android:visibility="visible"
+            android:layout_marginBottom="10dp"
             app:srcCompat="@drawable/logo"
             tools:srcCompat="@tools:sample/avatars" />
 

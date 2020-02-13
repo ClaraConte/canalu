@@ -64,8 +64,10 @@ public class MainActivity extends AppCompatActivity {
         mainViewModel.getUsuarios().observe(this, new Observer<Users>() {
             @Override
             public void onChanged(Users users) {
-                email = findViewById(R.id.tvemail);
-                email.setText(users.getUsersFirstName()+","+users.getUsersLastName());
+                nombre = findViewById(R.id.tvUsuario);
+                email = findViewById(R.id.tvEmail);
+                nombre.setText(users.getUsersFirstName()+","+users.getUsersLastName());
+                email.setText(users.getUsersEmail());
             }
         });
 

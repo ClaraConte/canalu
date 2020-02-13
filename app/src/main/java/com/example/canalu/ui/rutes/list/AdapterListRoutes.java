@@ -42,7 +42,7 @@ public class AdapterListRoutes extends ArrayAdapter<Users> {
         nameStore.setText(customers.getUsersFirstName()+","+customers.getAddress());
 
         TextView addressStore = itemView.findViewById(R.id.address_store);
-        addressStore.setText(customers.getAddress());
+      //  addressStore.setText(customers.getAddress().toArray());
 
         return itemView;
     }

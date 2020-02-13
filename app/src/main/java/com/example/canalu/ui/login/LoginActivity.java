@@ -67,10 +67,7 @@ public class LoginActivity extends AppCompatActivity {
             loginViewModel.sendPost(login);
             progress();
 
-            //GET
-            //loginViewModel.getUser();
             }
-
         });
     }
 

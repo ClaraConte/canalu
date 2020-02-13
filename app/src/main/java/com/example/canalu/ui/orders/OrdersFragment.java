@@ -50,10 +50,10 @@ public class OrdersFragment extends Fragment {
             @Override
             public void onChanged(@Nullable String s) {
 
-                Users usuario = new Users(2, "Juan","perez", (long) 23323,2,"los lapachos 232","2323234","mnnd@mksdc.com","24-02-2012");
+               /* Users usuario = new Users(2, "Juan","perez", "23323",2,"los lapachos 232","2323234","mnnd@mksdc.com","24-02-2012");
                 clientes.add(usuario);
-                Users usuario1 = new Users(2, "Nicolas","Conte", (long) 23323,2,"los molinos 232","2323234","mnnd@mksdc.com","24-02-2012");
-                clientes.add(usuario1);
+                Users usuario1 = new Users(2, "Nicolas","Conte", "23323",2,"los molinos 232","2323234","mnnd@mksdc.com","24-02-2012");
+                clientes.add(usuario1);*/
 
             }
         });
