@@ -11,6 +11,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.canalu.model.AuthenticationData;
+import com.example.canalu.model.Employees;
 import com.example.canalu.model.Login;
 import com.example.canalu.model.Users;
 import com.example.canalu.request.ApiClient;
@@ -49,15 +50,14 @@ public class LoginViewModel extends AndroidViewModel {
 
     public void sendPost(Login login) {
 
-        Call<String> call = ApiClient.getMyApiClient().post(login);
-        call.enqueue(new Callback<String>() {
+        Call<Employees> call = ApiClient.getMyApiClient().post(login);
+        call.enqueue(new Callback<Employees>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
+            public void onResponse(Call<Employees> call, Response<Employees> response) {
 
                 if (response.isSuccessful()) {
-                    AuthenticationData.getInstance().setToken(response.body());
+                    AuthenticationData.getInstance().setToken(response.body().getEmployeesKey());
                     token.postValue(AuthenticationData.getInstance().getToken());
-
                     /*SharedPreferences sharedPreferences = context.getSharedPreferences("token",0);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     String tokenValue="Bearer "+response.body();
@@ -68,14 +68,15 @@ public class LoginViewModel extends AndroidViewModel {
                     if(response.code() == 400) {
                         error.postValue("Usuario o contraseña incorrecto");
                     }else {
-                        error.postValue("Error de conexión a internet");
+                        error.postValue("Error de servidor");
                     }
                 }
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                error.postValue("10");
+            public void onFailure(Call<Employees> call, Throwable t) {
+                //error.postValue(t.toString());
+                error.postValue("Error al conectarse con el servidor");
             }
         });
     }

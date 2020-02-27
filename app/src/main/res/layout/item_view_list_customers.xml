@@ -4,23 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingVertical="20dp">
+    android:paddingVertical="20dp"
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/order_name_store"
-        android:layout_width="300dp"
+        android:id="@+id/name_store"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:layout_marginStart="10dp"
-        android:text="nombre de la tienda " />
+        android:layout_marginStart="20dp"
+        android:text="Clara" />
 
-    <ImageView
-        android:id="@+id/imageView"
+    <TextView
+        android:id="@+id/address_store"
         android:layout_width="wrap_content"
-        android:layout_gravity="right"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_marginStart="10dp"
-        app:srcCompat="@drawable/ic_schedule_black_24dp" />
+        android:textSize="16dp"
+        android:textColor="@color/textColorBlack"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:text="dirección" />
+
 
 </LinearLayout>

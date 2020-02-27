@@ -3,7 +3,9 @@ package com.example.canalu.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Provinces implements Parcelable {
+import java.io.Serializable;
+
+public class Provinces implements Parcelable, Serializable {
 
     private int idProvinces;
     private String provincesName;
@@ -58,6 +60,14 @@ public class Provinces implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeInt(idProvinces);
         parcel.writeString(provincesName);
+    }
+
+    @Override
+    public String toString() {
+        return "Provinces{" +
+                "idProvinces=" + idProvinces +
+                ", provincesName='" + provincesName + '\'' +
+                '}';
     }
 }
 

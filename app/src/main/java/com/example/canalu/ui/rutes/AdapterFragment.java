@@ -39,9 +39,4 @@ public class AdapterFragment extends FragmentPagerAdapter {
         return titlesList.get(position);
     }
 
-
-
-
-
-
 }

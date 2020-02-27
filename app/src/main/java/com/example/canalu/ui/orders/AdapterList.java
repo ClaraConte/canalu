@@ -11,18 +11,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.canalu.R;
+import com.example.canalu.model.Orders;
 import com.example.canalu.model.Users;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class AdapterList extends ArrayAdapter<Users> {
+public class AdapterList extends ArrayAdapter<Orders> {
 
     private  Context context;
-    private  List<Users> lista;
+    private  List<Orders> lista;
     private  LayoutInflater li;
 
 
-    public AdapterList(@NonNull Context context, int resource, @NonNull List<Users> objects, LayoutInflater li) {
+    public AdapterList(@NonNull Context context, int resource, @NonNull ArrayList<Orders> objects, LayoutInflater li) {
         super(context, resource, objects);
         this.context = context;
         this.lista = objects;
@@ -33,14 +35,14 @@ public class AdapterList extends ArrayAdapter<Users> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View itemView = convertView;
-        Users customers = lista.get(position);
+        Orders orders = lista.get(position);
 
         if(itemView == null){
             itemView = li.inflate(R.layout.item_view_orders,parent,false);
         }
 
-        TextView nameStore= itemView.findViewById(R.id.order_name_store);
-        nameStore.setText(customers.getUsersFirstName()+","+customers.getAddress());
+        TextView nameStore = itemView.findViewById(R.id.order_name_store);
+        nameStore.setText(orders.getUsers().getUsersFirstName()+","+orders.getUsers().getUsersLastName());
 
         return itemView;
     }

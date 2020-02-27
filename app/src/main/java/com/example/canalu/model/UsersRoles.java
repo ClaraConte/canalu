@@ -1,4 +1,6 @@
 package com.example.canalu.model;
 
-public class UsersRoles {
+import java.io.Serializable;
+
+public class UsersRoles implements  Serializable {
 }

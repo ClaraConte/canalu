@@ -3,7 +3,9 @@ package com.example.canalu.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Employees implements Parcelable {
+import java.io.Serializable;
+
+public class Employees implements Parcelable , Serializable {
 
     private int idEmployees;
     private String employeesUserName;

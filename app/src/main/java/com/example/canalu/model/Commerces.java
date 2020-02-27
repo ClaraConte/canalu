@@ -3,24 +3,38 @@ package com.example.canalu.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Commerces implements Parcelable {
+import java.io.Serializable;
+
+public class Commerces implements Parcelable, Serializable {
     private int idCommerces;
-    private String CommercesName;
-    private String CommercesRs;
+    private String commercesName;
+    private String commercesRS;
 
     public Commerces()  {
     }
 
-    public Commerces(int idCommerces, String commercesName, String commercesRs) {
+    public Commerces(int idCommerces, String commercesName, String commercesRS) {
         this.idCommerces = idCommerces;
-        CommercesName = commercesName;
-        CommercesRs = commercesRs;
+        this.commercesName = commercesName;
+        this.commercesRS = commercesRS;
     }
 
     protected Commerces(Parcel in) {
         idCommerces = in.readInt();
-        CommercesName = in.readString();
-        CommercesRs = in.readString();
+        commercesName = in.readString();
+        commercesRS = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(idCommerces);
+        dest.writeString(commercesName);
+        dest.writeString(commercesRS);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<Commerces> CREATOR = new Creator<Commerces>() {
@@ -44,40 +58,27 @@ public class Commerces implements Parcelable {
     }
 
     public String getCommercesName() {
-        return CommercesName;
+        return commercesName;
     }
 
     public void setCommercesName(String commercesName) {
-        CommercesName = commercesName;
+        this.commercesName = commercesName;
     }
 
-    public String getCommercesRs() {
-        return CommercesRs;
+    public String getCommercesRS() {
+        return commercesRS;
     }
 
-    public void setCommercesRs(String commercesRs) {
-        CommercesRs = commercesRs;
+    public void setCommercesRS(String commercesRS) {
+        this.commercesRS = commercesRS;
     }
 
     @Override
     public String toString() {
         return "Commerces{" +
                 "idCommerces=" + idCommerces +
-                ", CommercesName='" + CommercesName + '\'' +
-                ", CommercesRs='" + CommercesRs + '\'' +
+                ", commercesName='" + commercesName + '\'' +
+                ", commercesRS='" + commercesRS + '\'' +
                 '}';
-    }
-
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(idCommerces);
-        parcel.writeString(CommercesName);
-        parcel.writeString(CommercesRs);
     }
 }

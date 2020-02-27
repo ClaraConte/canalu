@@ -6,15 +6,11 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.canalu.model.Users;
 import com.example.canalu.request.ApiClient;
 import com.google.gson.Gson;
-
-import java.lang.reflect.Type;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,7 +19,6 @@ import retrofit2.Response;
 public class ProfileViewModel extends AndroidViewModel {
 
     private MutableLiveData<Users> usuario;
-    private Context context;
 
     public ProfileViewModel(@NonNull Application application) {
         super(application);
@@ -58,15 +53,7 @@ public class ProfileViewModel extends AndroidViewModel {
 
     public void putUser(Users users){
         int id = 1;
-        users.toString();
-
         Call<Users> call = ApiClient.getMyApiClient().put(id,users);
-        Log.d("passnuevo",users.getEmployees().getEmployeesKey());
-
-        Gson gson = new Gson();
-        //System.out.println(gson.toJson(users));
-        System.out.println(users);
-
 
         call.enqueue(new Callback<Users>() {
             @Override

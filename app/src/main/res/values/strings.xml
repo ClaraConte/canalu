@@ -41,4 +41,11 @@
     <string name="details_visited">Visitado</string>
     <string name="details_not_visited">NO Visitado</string>
 
+    <!--Activity Detail Customers-->
+    <string name="details_customer_nombre">Nombre</string>
+    <string name="details_customer_address">Dirección</string>
+    <string name="details_customer_telephone">Teléfono</string>
+    <string name="details_customer_email">Email</string>
+    <string name="details_customer_last_visited">Última visita</string>
+
 </resources>

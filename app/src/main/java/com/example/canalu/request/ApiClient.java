@@ -5,11 +5,18 @@ import android.util.Log;
 import androidx.annotation.RawRes;
 
 import com.example.canalu.model.AuthenticationData;
+import com.example.canalu.model.Employees;
 import com.example.canalu.model.Login;
+import com.example.canalu.model.MapsItems;
+import com.example.canalu.model.MapsRoutes;
+import com.example.canalu.model.Orders;
 import com.example.canalu.model.Users;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -26,7 +33,14 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public class ApiClient {
-    private static final String PATH ="http://192.168.0.18:45455/api/";
+    //private static final String PATH ="http://192.168.0.18:45455/api/"; Server
+
+    private static final String PATH ="http://192.168.0.17:45455/api/";
+
+    //private static final String PATH ="http://10.152.112.193:45455/api/"; ulp
+
+    //private static final String PATH ="http://192.168.0.30:45455/api/"; MZa
+
     private static  MyApiInterface myApiInterface;
 
     public static MyApiInterface getMyApiClient(){
@@ -61,7 +75,7 @@ public class ApiClient {
         Call<Propietario> actualizar(@Header("Authorization")String token, @Path("id") int groupId, @Field("Nombre")String nombre,@Field("Apellido") String*/
 
         @POST("Users/")
-        Call<String> post(@Body Login login);
+        Call<Employees> post(@Body Login login);
 
         @GET("Users/{id}")
         Call<Users> get(@Path("id") int groupId);
@@ -69,5 +83,13 @@ public class ApiClient {
         @PUT("Users/{id}")
         Call<Users> put(@Path("id") int id, @Body Users users);
 
+        @GET("MapsRoutes/{id}")
+        Call<MapsRoutes> getMapsRoutes(@Path("id") int groupId);
+
+        @PUT("MapsRoutes/{id}")
+        Call<MapsItems> putMapsItems(@Path("id") int id, @Body MapsItems mapsItems);
+
+        @GET("Orders/{id}")
+        Call <ArrayList<Orders>> getOrdersList(@Path("id") int groupId);
     }
 }

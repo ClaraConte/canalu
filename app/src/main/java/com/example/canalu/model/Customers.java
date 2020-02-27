@@ -1,6 +1,8 @@
 package com.example.canalu.model;
 
-public class Customers {
+import java.io.Serializable;
+
+public class Customers implements Serializable {
 
     public Customers() {
 

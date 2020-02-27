@@ -11,5 +11,6 @@
 
     <color name="textColorPrimary">#FF585858</color>
     <color name="backgroundColor">#ffffff</color>
+    <color name="textColorBlack">#272626</color>
 
 </resources>

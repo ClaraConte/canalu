@@ -3,15 +3,17 @@ package com.example.canalu.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Address implements Parcelable {
+import java.io.Serializable;
+
+public class Address implements Parcelable, Serializable {
 
         private int idAddress;
         private String addressStreet;
         private String addressNumber;
         private String addressDptoFloor;
         private String addressDptoNumber;
-        private float addressLatitude;
-        private float addressLongitude;
+        private Double addressLatitude;
+        private Double addressLongitude;
         private int idUsers;
         private int idAddressType;
         private String addressObservations;
@@ -23,7 +25,7 @@ public class Address implements Parcelable {
         public Address() {
         }
 
-        public Address(int idAddress, String addressStreet, String addressNumber, String addressDptoFloor, String addressDptoNumber, float addressLatitude, float addressLongitude, int idUsers, int idAddressType, String addressObservations, int idLocations, Locations locations, int idCommerce, Commerces commerces) {
+        public Address(int idAddress, String addressStreet, String addressNumber, String addressDptoFloor, String addressDptoNumber, Double addressLatitude, Double addressLongitude, int idUsers, int idAddressType, String addressObservations, int idLocations, Locations locations, int idCommerces, Commerces commerces) {
                 this.idAddress = idAddress;
                 this.addressStreet = addressStreet;
                 this.addressNumber = addressNumber;
@@ -36,7 +38,7 @@ public class Address implements Parcelable {
                 this.addressObservations = addressObservations;
                 this.idLocations = idLocations;
                 this.locations = locations;
-                this.idCommerces = idCommerce;
+                this.idCommerces = idCommerces;
                 this.commerces = commerces;
         }
 
@@ -46,13 +48,23 @@ public class Address implements Parcelable {
                 addressNumber = in.readString();
                 addressDptoFloor = in.readString();
                 addressDptoNumber = in.readString();
-                addressLatitude = in.readFloat();
-                addressLongitude = in.readFloat();
+                if (in.readByte() == 0) {
+                        addressLatitude = null;
+                } else {
+                        addressLatitude = in.readDouble();
+                }
+                if (in.readByte() == 0) {
+                        addressLongitude = null;
+                } else {
+                        addressLongitude = in.readDouble();
+                }
                 idUsers = in.readInt();
                 idAddressType = in.readInt();
                 addressObservations = in.readString();
                 idLocations = in.readInt();
+                locations = in.readParcelable(Locations.class.getClassLoader());
                 idCommerces = in.readInt();
+                commerces = in.readParcelable(Commerces.class.getClassLoader());
         }
 
         public static final Creator<Address> CREATOR = new Creator<Address>() {
@@ -107,19 +119,19 @@ public class Address implements Parcelable {
                 this.addressDptoNumber = addressDptoNumber;
         }
 
-        public float getAddressLatitude() {
+        public Double getAddressLatitude() {
                 return addressLatitude;
         }
 
-        public void setAddressLatitude(float addressLatitude) {
+        public void setAddressLatitude(Double addressLatitude) {
                 this.addressLatitude = addressLatitude;
         }
 
-        public float getAddressLongitude() {
+        public Double getAddressLongitude() {
                 return addressLongitude;
         }
 
-        public void setAddressLongitude(float addressLongitude) {
+        public void setAddressLongitude(Double addressLongitude) {
                 this.addressLongitude = addressLongitude;
         }
 
@@ -163,12 +175,12 @@ public class Address implements Parcelable {
                 this.locations = locations;
         }
 
-        public int getIdCommerce() {
+        public int getIdCommerces() {
                 return idCommerces;
         }
 
-        public void setIdCommerce(int idCommerce) {
-                this.idCommerces = idCommerce;
+        public void setIdCommerces(int idCommerces) {
+                this.idCommerces = idCommerces;
         }
 
         public Commerces getCommerces() {
@@ -194,7 +206,7 @@ public class Address implements Parcelable {
                         ", addressObservations='" + addressObservations + '\'' +
                         ", idLocations=" + idLocations +
                         ", locations=" + locations +
-                        ", idCommerce=" + idCommerces +
+                        ", idCommerces=" + idCommerces +
                         ", commerces=" + commerces +
                         '}';
         }
@@ -205,18 +217,30 @@ public class Address implements Parcelable {
         }
 
         @Override
-        public void writeToParcel(Parcel parcel, int i) {
-                parcel.writeInt(idAddress);
-                parcel.writeString(addressStreet);
-                parcel.writeString(addressNumber);
-                parcel.writeString(addressDptoFloor);
-                parcel.writeString(addressDptoNumber);
-                parcel.writeFloat(addressLatitude);
-                parcel.writeFloat(addressLongitude);
-                parcel.writeInt(idUsers);
-                parcel.writeInt(idAddressType);
-                parcel.writeString(addressObservations);
-                parcel.writeInt(idLocations);
-                parcel.writeInt(idCommerces);
+        public void writeToParcel(Parcel dest, int flags) {
+                dest.writeInt(idAddress);
+                dest.writeString(addressStreet);
+                dest.writeString(addressNumber);
+                dest.writeString(addressDptoFloor);
+                dest.writeString(addressDptoNumber);
+                if (addressLatitude == null) {
+                        dest.writeByte((byte) 0);
+                } else {
+                        dest.writeByte((byte) 1);
+                        dest.writeDouble(addressLatitude);
+                }
+                if (addressLongitude == null) {
+                        dest.writeByte((byte) 0);
+                } else {
+                        dest.writeByte((byte) 1);
+                        dest.writeDouble(addressLongitude);
+                }
+                dest.writeInt(idUsers);
+                dest.writeInt(idAddressType);
+                dest.writeString(addressObservations);
+                dest.writeInt(idLocations);
+                dest.writeParcelable(locations, flags);
+                dest.writeInt(idCommerces);
+                dest.writeParcelable(commerces, flags);
         }
 }
