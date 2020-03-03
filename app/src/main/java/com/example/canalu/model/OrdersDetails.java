@@ -1,6 +1,11 @@
 package com.example.canalu.model;
 
-public class OrdersDetails {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+public class OrdersDetails  implements  Serializable, Parcelable {
 
     private int idOrdersDetails;
     private int idOrders;
@@ -18,6 +23,26 @@ public class OrdersDetails {
         this.idProducts = idProducts;
         this.ordersDetailsTotalProducts = ordersDetailsTotalProducts;
     }
+
+    protected OrdersDetails(Parcel in) {
+        idOrdersDetails = in.readInt();
+        idOrders = in.readInt();
+        products = in.readParcelable(Products.class.getClassLoader());
+        idProducts = in.readInt();
+        ordersDetailsTotalProducts = in.readInt();
+    }
+
+    public static final Creator<OrdersDetails> CREATOR = new Creator<OrdersDetails>() {
+        @Override
+        public OrdersDetails createFromParcel(Parcel in) {
+            return new OrdersDetails(in);
+        }
+
+        @Override
+        public OrdersDetails[] newArray(int size) {
+            return new OrdersDetails[size];
+        }
+    };
 
     public int getIdOrdersDetails() {
         return idOrdersDetails;
@@ -68,5 +93,19 @@ public class OrdersDetails {
                 ", idProducts=" + idProducts +
                 ", ordersDetailsTotalProducts=" + ordersDetailsTotalProducts +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(idOrdersDetails);
+        dest.writeInt(idOrders);
+        dest.writeParcelable(products, flags);
+        dest.writeInt(idProducts);
+        dest.writeInt(ordersDetailsTotalProducts);
     }
 }

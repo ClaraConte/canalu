@@ -57,7 +57,7 @@ public class MapsRoutesFragment extends Fragment {
                 mMap.clear(); //clear old markers
 
                 CameraPosition googlePlex = CameraPosition.builder()
-                        .target(new LatLng(-33.280576, -66.332482))
+                        .target(new LatLng(-33.183736, -66.31270))
                         .zoom(10)
                         .bearing(0)
                         .tilt(45)
@@ -73,11 +73,13 @@ public class MapsRoutesFragment extends Fragment {
                 mMap.addMarker(new MarkerOptions()
                         .position(new LatLng(-33.280576, -66.332482))
                         .title("San Luis")
-                        .snippet("Centro de San Luis"));
+                        .snippet("Centro de San Luis")
+                        .icon(bitmapDescriptorFromVector(getActivity(),R.drawable.ic_place_black_24dp)));
 
                 mMap.addMarker(new MarkerOptions()
                         .position(new LatLng(-33.150720,-66.306864))
-                        .title("ULP"));
+                        .title("ULP")
+                        .icon(bitmapDescriptorFromVector(getActivity(),R.drawable.ic_place_black_24dp)));
             }
         });
 

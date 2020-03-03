@@ -59,10 +59,8 @@ public class CustomersFragment extends Fragment {
 
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-
                     MapsItems mapsItems = new MapsItems();
                     mapsItems = lista.get(position);
-
 
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("list", mapsItems);

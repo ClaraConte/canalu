@@ -10,6 +10,7 @@ import com.example.canalu.model.Login;
 import com.example.canalu.model.MapsItems;
 import com.example.canalu.model.MapsRoutes;
 import com.example.canalu.model.Orders;
+import com.example.canalu.model.Products;
 import com.example.canalu.model.Users;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -33,13 +34,14 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public class ApiClient {
-    //private static final String PATH ="http://192.168.0.18:45455/api/"; Server
+    //private static final String PATH ="http://192.168.0.18:45455/api/"; // Server ip local
+    //private static final String PATH ="http://170.231.163.225:8282/api/"; //Server ip publica
 
-    private static final String PATH ="http://192.168.0.17:45455/api/";
+   // private static final String PATH ="http://192.168.0.17:45455/api/"; // local casa
 
-    //private static final String PATH ="http://10.152.112.193:45455/api/"; ulp
+    private static final String PATH ="http://10.152.112.193:45455/api/"; // ulp
 
-    //private static final String PATH ="http://192.168.0.30:45455/api/"; MZa
+    //private static final String PATH ="http://192.168.0.30:45455/api/"; //MZa
 
     private static  MyApiInterface myApiInterface;
 
@@ -91,5 +93,12 @@ public class ApiClient {
 
         @GET("Orders/{id}")
         Call <ArrayList<Orders>> getOrdersList(@Path("id") int groupId);
+
+        @GET("Products/")
+        Call <ArrayList<Products>> getProducts();
+
+        @POST("Users/")
+        Call<Orders> createOrder(@Body Orders orders);
+
     }
 }

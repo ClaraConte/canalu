@@ -18,6 +18,7 @@ import com.example.canalu.R;
 import com.example.canalu.model.Orders;
 
 
+import com.example.canalu.ui.orders.add.OrdersAddActivity;
 import com.example.canalu.ui.orders.details.OrdersDetailsActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -39,6 +40,7 @@ public class OrdersFragment extends Fragment {
             public void onClick(View view) {
                 Snackbar.make(view, "agregar un pedido a un usuario", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
+                startActivity(new Intent(getContext(), OrdersAddActivity.class));
             }
         });
 
@@ -63,14 +65,15 @@ public class OrdersFragment extends Fragment {
 
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Orders order = orders.get(position);
+                goToOrderDetails(order);
 
             }
         });
     }
 
-    void goToOrderDetails(View root, Orders order) {
+    void goToOrderDetails(Orders order) {
         Bundle bundle = new Bundle();
-        bundle.putSerializable("order", order);
+        bundle.putSerializable("detail", order);
 
         Intent detailIntent = new Intent(getContext(), OrdersDetailsActivity.class);
         detailIntent.putExtras(bundle);

@@ -31,7 +31,14 @@
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
+            android:name=".ui.orders.details.OrdersDetailsActivity" />
+
+        <activity
             android:name=".ui.rutes.details.RoutesDetailsActivity" />
+        <activity
+            android:name=".ui.orders.add.OrdersAddActivity" />
+        <activity
+            android:name=".ui.orders.create.CreateOrderActivity" />
         <activity
             android:name=".ui.customers.details.CustomersDetailsActivity" />
         <meta-data

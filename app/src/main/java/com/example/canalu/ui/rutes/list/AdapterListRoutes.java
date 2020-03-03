@@ -37,7 +37,7 @@ public class AdapterListRoutes extends ArrayAdapter<MapsItems> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View itemView = convertView;
         MapsItems customers = new MapsItems();
-        customers=  lista.get(position);
+        customers = lista.get(position);
 
         if(itemView == null){
             itemView = li.inflate(R.layout.item_view_list_routes,parent,false);

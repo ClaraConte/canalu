@@ -1,16 +1,16 @@
-package com.example.canalu.ui.rutes.list;
+package com.example.canalu.ui.orders.add;
 
 import android.app.Application;
-import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.example.canalu.model.MapsItems;
 import com.example.canalu.model.MapsRoutes;
+import com.example.canalu.model.Orders;
 import com.example.canalu.request.ApiClient;
 
 import java.util.ArrayList;
@@ -19,20 +19,20 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ListRoutesViewModel extends AndroidViewModel {
+public class OrdersAddViewModel extends AndroidViewModel {
 
-    private MutableLiveData<ArrayList<MapsItems>> routes;
+    private MutableLiveData<MapsItems> route;
     private MutableLiveData<String> error;
 
-    public ListRoutesViewModel(@NonNull Application application) {
+    public OrdersAddViewModel(@NonNull Application application) {
         super(application);
     }
 
-    public LiveData<ArrayList<MapsItems>> getMapsRoutes(){
-        if(routes == null){
-            routes = new MutableLiveData<ArrayList<MapsItems>>();
+    public MutableLiveData<MapsItems> getMapsRoutes(){
+        if(route == null){
+            route = new MutableLiveData<>();
         }
-        return routes;
+        return route;
     }
 
     public LiveData<String> getError(){
@@ -49,7 +49,10 @@ public class ListRoutesViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<MapsRoutes> call, Response<MapsRoutes> response) {
                 if (response.isSuccessful()) {
-                    routes.setValue(response.body().getMapsItems());
+                    for (MapsItems i : response.body().getMapsItems()
+                    ) {
+                        route.setValue(i);
+                    }
                 }else{
                     error.setValue("No se encontraron datos");
                 }

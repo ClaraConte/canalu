@@ -1,8 +1,11 @@
 package com.example.canalu.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 
-public class Products implements Serializable {
+public class Products implements Serializable, Parcelable {
 
     private int idProducts;
     private String productsName;
@@ -40,6 +43,44 @@ public class Products implements Serializable {
         this.idProductsMeasures = idProductsMeasures;
         this.idProductsPricesType = idProductsPricesType;
     }
+
+    protected Products(Parcel in) {
+        idProducts = in.readInt();
+        productsName = in.readString();
+        idCategories = in.readInt();
+        productsDescriptions = in.readString();
+        if (in.readByte() == 0) {
+            productsUnitPrice = null;
+        } else {
+            productsUnitPrice = in.readDouble();
+        }
+        productsBarCode = in.readString();
+        productsExpirationsDate = in.readString();
+        productsImage = in.readString();
+        productsStatus = in.readByte() != 0;
+        productsMinStock = in.readInt();
+        idBrands = in.readInt();
+        productsDimensions = in.readString();
+        if (in.readByte() == 0) {
+            productsWeight = null;
+        } else {
+            productsWeight = in.readDouble();
+        }
+        idProductsMeasures = in.readInt();
+        idProductsPricesType = in.readInt();
+    }
+
+    public static final Creator<Products> CREATOR = new Creator<Products>() {
+        @Override
+        public Products createFromParcel(Parcel in) {
+            return new Products(in);
+        }
+
+        @Override
+        public Products[] newArray(int size) {
+            return new Products[size];
+        }
+    };
 
     public int getIdProducts() {
         return idProducts;
@@ -180,5 +221,39 @@ public class Products implements Serializable {
                 ", idProductsMeasures=" + idProductsMeasures +
                 ", idProductsPricesType=" + idProductsPricesType +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(idProducts);
+        dest.writeString(productsName);
+        dest.writeInt(idCategories);
+        dest.writeString(productsDescriptions);
+        if (productsUnitPrice == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(productsUnitPrice);
+        }
+        dest.writeString(productsBarCode);
+        dest.writeString(productsExpirationsDate);
+        dest.writeString(productsImage);
+        dest.writeByte((byte) (productsStatus ? 1 : 0));
+        dest.writeInt(productsMinStock);
+        dest.writeInt(idBrands);
+        dest.writeString(productsDimensions);
+        if (productsWeight == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(productsWeight);
+        }
+        dest.writeInt(idProductsMeasures);
+        dest.writeInt(idProductsPricesType);
     }
 }

@@ -43,6 +43,7 @@ public class MapsItems implements Parcelable, Serializable {
         byte tmpMapsItemsVisited = in.readByte();
         mapsItemsVisited = tmpMapsItemsVisited == 0 ? null : tmpMapsItemsVisited == 1;
         mapsItemsDateTime = in.readString();
+        mapsItemsObservations = in.readString();
     }
 
     public static final Creator<MapsItems> CREATOR = new Creator<MapsItems>() {
@@ -149,5 +150,6 @@ public class MapsItems implements Parcelable, Serializable {
         dest.writeInt(mapsItemsPriority);
         dest.writeByte((byte) (mapsItemsVisited == null ? 0 : mapsItemsVisited ? 1 : 2));
         dest.writeString(mapsItemsDateTime);
+        dest.writeString(mapsItemsObservations);
     }
 }

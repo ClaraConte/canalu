@@ -17,7 +17,7 @@ import com.example.canalu.model.MapsItems;
 
 public class RoutesDetailsActivity extends AppCompatActivity {
 
-    private MapsItems list = new MapsItems();
+    private MapsItems item = new MapsItems();
     private TextView address;
     private Button details_buton;
     private RadioGroup radioGroup;
@@ -28,6 +28,7 @@ public class RoutesDetailsActivity extends AppCompatActivity {
     private MapsItems aux = new MapsItems();
 
     private RoutesDetailsViewModel routesDetailsViewModel;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,9 +48,12 @@ public class RoutesDetailsActivity extends AppCompatActivity {
                 address.setText(mapsItems.getUsers().getAddress().get(0).getAddressStreet()+
                             " "+mapsItems.getUsers().getAddress().get(0).getAddressNumber()+
                             ", "+mapsItems.getUsers().getAddress().get(0).getLocations().getLocationsName());
+
                if(mapsItems.getMapsItemsVisited()){
                    visited.setChecked(true);
-               }else{noVisited.setChecked(true);}
+               }else{
+                   noVisited.setChecked(true);
+               }
 
                 observations.setText(mapsItems.getMapsItemsObservations() );
 
@@ -71,8 +75,8 @@ public class RoutesDetailsActivity extends AppCompatActivity {
     }
 
     private void getViewModel(){
-        list = this.getIntent().getExtras().getParcelable("list");
-        routesDetailsViewModel.getDetails(list);
+        item = this.getIntent().getExtras().getParcelable("item");
+        routesDetailsViewModel.getDetails(item);
     }
 
     private void saveData(){
