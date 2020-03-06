@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
         setContentView(R.layout.activity_login);
 
         btnLogin = findViewById(R.id.login);
@@ -39,6 +40,8 @@ public class LoginActivity extends AppCompatActivity {
         result = findViewById(R.id.result);
         pDialog = new ProgressDialog(this);
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
+
+
 
         loginViewModel.getError().observe(this, new Observer<String>() {
             @Override
@@ -69,6 +72,15 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
+        loginViewModel.getErrorLogOut().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                result.setText(s);
+            }
+        });
+
+        getLogOut();
     }
 
     @Override
@@ -83,4 +95,14 @@ public class LoginActivity extends AppCompatActivity {
         pDialog.setCancelable(false);
         pDialog.show();
     }
+
+    private void getLogOut(){
+        Boolean value;
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            value = bundle.getBoolean("error");
+            loginViewModel.setError(value);
+        }
+    }
+
 }

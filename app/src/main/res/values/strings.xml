@@ -48,4 +48,9 @@
     <string name="details_customer_email">Email</string>
     <string name="details_customer_last_visited">Última visita</string>
 
+    <!-- Error -->
+    <string name="error_session_finish">Su sesión a terminado, vuelva a ingresar</string>
+
+
+
 </resources>

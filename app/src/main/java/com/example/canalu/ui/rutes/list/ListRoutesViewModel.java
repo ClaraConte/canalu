@@ -23,6 +23,7 @@ public class ListRoutesViewModel extends AndroidViewModel {
 
     private MutableLiveData<ArrayList<MapsItems>> routes;
     private MutableLiveData<String> error;
+    private MutableLiveData<Boolean> login;
 
     public ListRoutesViewModel(@NonNull Application application) {
         super(application);
@@ -42,6 +43,13 @@ public class ListRoutesViewModel extends AndroidViewModel {
         return error;
     }
 
+    public LiveData<Boolean> goToLogin(){
+        if(login == null){
+            login = new MutableLiveData<>();
+        }
+        return login;
+    }
+
     public void getRoutes(){
         int groupId = 1;
         Call<MapsRoutes> call = ApiClient.getMyApiClient().getMapsRoutes(groupId);
@@ -51,7 +59,9 @@ public class ListRoutesViewModel extends AndroidViewModel {
                 if (response.isSuccessful()) {
                     routes.setValue(response.body().getMapsItems());
                 }else{
-                    error.setValue("No se encontraron datos");
+                    if(response.code() == 401){
+                        login.setValue(true);
+                    }
                 }
             }
             @Override

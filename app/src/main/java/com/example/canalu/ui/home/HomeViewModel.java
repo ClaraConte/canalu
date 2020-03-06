@@ -22,9 +22,7 @@ public class HomeViewModel extends ViewModel {
     public HomeViewModel() {
         mText = new MutableLiveData<>();
         useri = new MutableLiveData<Users>();
-
         mText.setValue("This is home fragment");
-        getUser();
     }
 
     public LiveData<String> getText() {
@@ -35,7 +33,7 @@ public class HomeViewModel extends ViewModel {
         return useri;
     }
 
-     public void getUser(){
+   /*  public void getUser(){
         int groupId = 1;
          //mText.setValue("code: no estas logueado");
         Call<Users> call = ApiClient.getMyApiClient().get(groupId);
@@ -53,7 +51,7 @@ public class HomeViewModel extends ViewModel {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     String tokenValue="Bearer "+response.body();
                     editor.putString("token",tokenValue);
-                    editor.commit();*/
+                    editor.commit();
 
                 }else {
                     mText.setValue("codigo:"+response.code());
@@ -65,5 +63,5 @@ public class HomeViewModel extends ViewModel {
                 mText.setValue("codigo:"+t);
             }
         });
-    }
+    }*/
 }

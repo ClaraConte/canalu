@@ -3,6 +3,7 @@ import android.app.Application;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.canalu.R;
 import com.example.canalu.model.AuthenticationData;
 import com.example.canalu.model.Employees;
 import com.example.canalu.model.Login;
@@ -22,9 +24,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.provider.Settings.System.getString;
+
+
 public class LoginViewModel extends AndroidViewModel {
 
     private MutableLiveData<String> error;
+    private MutableLiveData<String> errorLogOut;
     private MutableLiveData<String> token;
 
     private Context context;
@@ -46,6 +52,13 @@ public class LoginViewModel extends AndroidViewModel {
             error = new MutableLiveData<>();
         }
         return error;
+    }
+
+    public LiveData<String> getErrorLogOut(){
+        if(errorLogOut == null){
+            errorLogOut = new MutableLiveData<>();
+        }
+        return errorLogOut;
     }
 
     public void sendPost(Login login) {
@@ -80,5 +93,12 @@ public class LoginViewModel extends AndroidViewModel {
             }
         });
     }
+
+   public void setError(Boolean logOut){
+        if(logOut){
+             //getApplication().getString(R.string.error_session_finish);
+            errorLogOut.postValue("Su sesión a expirado, vuelva a ingresar");
+        }
+   }
 
 }

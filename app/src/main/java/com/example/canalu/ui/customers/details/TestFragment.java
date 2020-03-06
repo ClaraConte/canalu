@@ -23,11 +23,11 @@ public class TestFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         final TextView textView = root.findViewById(R.id.text_home);
-        String var;
+       /* String var;
         Bundle datosRecuperados = getArguments();
         long id = datosRecuperados.getLong("id");
 
-        System.out.println(id);
+        System.out.println(id);*/
         return root;
     }
 

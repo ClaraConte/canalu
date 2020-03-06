@@ -20,6 +20,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.canalu.R;
 import com.example.canalu.model.MapsItems;
 import com.example.canalu.ui.customers.details.TestFragment;
+import com.example.canalu.ui.login.LoginActivity;
 import com.example.canalu.ui.rutes.details.RoutesDetailsActivity;
 import com.example.canalu.ui.rutes.details.RoutesDetailsViewModel;
 
@@ -30,7 +31,7 @@ public class ListRoutesFragment extends Fragment {
     private ListRoutesViewModel listRoutesViewModel;
     private View root;
     private ListView listView;
-
+    private boolean isBackFromB;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         listRoutesViewModel =
@@ -46,27 +47,18 @@ public class ListRoutesFragment extends Fragment {
             }
         });
 
-        /////////   Test //////
-        Bundle datosAEnviar = new Bundle();
-
-        datosAEnviar.putLong("id", 123L);
-
-        Fragment fragmento = new TestFragment();
-        fragmento.setArguments(datosAEnviar);
-
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        //fragmentTransaction.replace(R.id.fragment_home, fragmento);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-
-
-
-
-
+        listRoutesViewModel.goToLogin().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if (aBoolean){
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                intent.putExtra("error",aBoolean);
+                startActivity(intent);
+                }
+            }
+        });
 
         getMapsRoutes();
-
         return root;
     }
 
@@ -98,6 +90,22 @@ public class ListRoutesFragment extends Fragment {
                 startActivity(detailsIntent);
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getMapsRoutes();
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        getMapsRoutes();
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        getMapsRoutes();
     }
 }
 

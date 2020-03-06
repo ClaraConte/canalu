@@ -48,7 +48,17 @@ public class MainActivity extends AppCompatActivity {
             .build();
 
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-        mainViewModel.getUser();
+
+        mainViewModel.getUsuarios().observe(this, new Observer<Users>() {
+            @Override
+            public void onChanged(Users users) {
+                nombre = findViewById(R.id.tvUsuario);
+                email = findViewById(R.id.tvEmail);
+                nombre.setText(users.getUsersFirstName()+","+users.getUsersLastName());
+                email.setText(users.getUsersEmail());
+            }
+        });
+
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
@@ -60,16 +70,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Intent val = getIntent();
         // String mail = val.getStringExtra("user");
+        mainViewModel.getUser();
 
-        mainViewModel.getUsuarios().observe(this, new Observer<Users>() {
-            @Override
-            public void onChanged(Users users) {
-                nombre = findViewById(R.id.tvUsuario);
-                email = findViewById(R.id.tvEmail);
-                nombre.setText(users.getUsersFirstName()+","+users.getUsersLastName());
-                email.setText(users.getUsersEmail());
-            }
-        });
 
         getMenuInflater().inflate(R.menu.main, menu);
         return true;

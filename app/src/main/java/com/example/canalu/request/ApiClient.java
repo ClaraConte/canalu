@@ -37,9 +37,9 @@ public class ApiClient {
     //private static final String PATH ="http://192.168.0.18:45455/api/"; // Server ip local
     //private static final String PATH ="http://170.231.163.225:8282/api/"; //Server ip publica
 
-   // private static final String PATH ="http://192.168.0.17:45455/api/"; // local casa
+    private static final String PATH ="http://192.168.0.17:45455/api/"; // local casa
 
-    private static final String PATH ="http://10.152.112.193:45455/api/"; // ulp
+    //private static final String PATH ="http://10.152.112.193:45455/api/"; // ulp
 
     //private static final String PATH ="http://192.168.0.30:45455/api/"; //MZa
 
@@ -80,7 +80,7 @@ public class ApiClient {
         Call<Employees> post(@Body Login login);
 
         @GET("Users/{id}")
-        Call<Users> get(@Path("id") int groupId);
+        Call<Users> get(@Path("id") int id);
 
         @PUT("Users/{id}")
         Call<Users> put(@Path("id") int id, @Body Users users);

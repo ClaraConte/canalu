@@ -3,6 +3,8 @@ package com.example.canalu.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.Nullable;
+
 import java.io.Serializable;
 
 public class Employees implements Parcelable , Serializable {
@@ -35,6 +37,23 @@ public class Employees implements Parcelable , Serializable {
         employeesStatus = in.readByte() != 0;
         idUsers = in.readInt();
         idUsersRoles = in.readInt();
+        usersRoles = in.readParcelable(UsersRoles.class.getClassLoader());
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(idEmployees);
+        dest.writeString(employeesUserName);
+        dest.writeString(employeesKey);
+        dest.writeByte((byte) (employeesStatus ? 1 : 0));
+        dest.writeInt(idUsers);
+        dest.writeInt(idUsersRoles);
+        dest.writeParcelable(usersRoles, flags);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<Employees> CREATOR = new Creator<Employees>() {
@@ -97,11 +116,12 @@ public class Employees implements Parcelable , Serializable {
         this.idUsersRoles = idUsersRoles;
     }
 
+    @Nullable
     public UsersRoles getUsersRoles() {
         return usersRoles;
     }
 
-    public void setUsersRoles(UsersRoles usersRoles) {
+    public void setUsersRoles(@Nullable UsersRoles usersRoles) {
         this.usersRoles = usersRoles;
     }
 
@@ -116,20 +136,5 @@ public class Employees implements Parcelable , Serializable {
                 ", idUsersRoles=" + idUsersRoles +
                 ", usersRoles=" + usersRoles +
                 '}';
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(idEmployees);
-        parcel.writeString(employeesUserName);
-        parcel.writeString(employeesKey);
-        parcel.writeByte((byte) (employeesStatus ? 1 : 0));
-        parcel.writeInt(idUsers);
-        parcel.writeInt(idUsersRoles);
     }
 }

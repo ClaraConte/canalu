@@ -16,9 +16,7 @@ public class Users implements Parcelable, Serializable {
     private int usersDni;
     private String usersPhone;
     private String usersEmail;
-    @SerializedName("usersBirthDay")
     private String usersBirthDay;
-
     private ArrayList<Address> address = new ArrayList<>();
     private Employees employees;
 
@@ -46,6 +44,7 @@ public class Users implements Parcelable, Serializable {
         usersEmail = in.readString();
         usersBirthDay = in.readString();
         address = in.createTypedArrayList(Address.CREATOR);
+        employees = in.readParcelable(Employees.class.getClassLoader());
     }
 
     public static final Creator<Users> CREATOR = new Creator<Users>() {
@@ -59,6 +58,24 @@ public class Users implements Parcelable, Serializable {
             return new Users[size];
         }
     };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(idUsers);
+        dest.writeString(usersFirstName);
+        dest.writeString(usersLastName);
+        dest.writeInt(usersDni);
+        dest.writeString(usersPhone);
+        dest.writeString(usersEmail);
+        dest.writeString(usersBirthDay);
+        dest.writeTypedList(address);
+        dest.writeParcelable(employees, flags);
+    }
 
     public int getIdUsers() {
         return idUsers;
@@ -132,6 +149,10 @@ public class Users implements Parcelable, Serializable {
         this.employees = employees;
     }
 
+    public static Creator<Users> getCREATOR() {
+        return CREATOR;
+    }
+
     @Override
     public String toString() {
         return "Users{" +
@@ -145,23 +166,6 @@ public class Users implements Parcelable, Serializable {
                 ", address=" + address +
                 ", employees=" + employees +
                 '}';
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(idUsers);
-        parcel.writeString(usersFirstName);
-        parcel.writeString(usersLastName);
-        parcel.writeInt(usersDni);
-        parcel.writeString(usersPhone);
-        parcel.writeString(usersEmail);
-        parcel.writeString(usersBirthDay);
-        parcel.writeTypedList(address);
     }
 }
 

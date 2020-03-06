@@ -1,6 +1,7 @@
 package com.example.canalu.ui.rutes.details;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,10 +11,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import com.example.canalu.R;
 import com.example.canalu.model.MapsItems;
+import com.example.canalu.ui.rutes.list.ListRoutesFragment;
 
 public class RoutesDetailsActivity extends AppCompatActivity {
 
@@ -91,10 +96,14 @@ public class RoutesDetailsActivity extends AppCompatActivity {
 
             routesDetailsViewModel.saveDetails(aux);
             Toast.makeText(getApplicationContext(),"Datos guardados", Toast.LENGTH_SHORT).show();
-
-            //Intent intent= new Intent(getApplicationContext(), RoutesFragment.class);
-            //startActivity(intent);
+            onBackPressed();
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
 }
